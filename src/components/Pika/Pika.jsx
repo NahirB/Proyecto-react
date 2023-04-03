@@ -57,7 +57,7 @@ export const Pika = () =>{
             </div>
         </><>
                 <form>
-                    <input type= "text" value={} input/>
+                    <input type= "text"/>
                 </form>
                 
         </></>
