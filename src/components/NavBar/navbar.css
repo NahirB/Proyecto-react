@@ -1,7 +1,7 @@
 .menu{
     display: flex;
     justify-content: space-around;
-    background-color: brown;
+    background-color: #36d6a6fb;
     color: aliceblue;
     padding-top: 5px;
 }
