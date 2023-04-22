@@ -1,9 +1,7 @@
-button{
-    margin: 5px;
-}
-h4{
+h2{
     text-align: center;
 }
-div{
+.spinner{
     text-align: center;
+    font-size: 50px
 }

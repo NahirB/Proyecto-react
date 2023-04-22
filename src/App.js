@@ -4,21 +4,31 @@ import { ItemListContainer } from "./components/ItemListContainer/ItemListContai
 import { NavBar} from "./components/NavBar/NavBar";
 import { ItemCount } from './components/ItemCount/ItemCount';
 import { Pika } from './components/Pika/Pika';
-
+import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer';
+import {
+  BrowserRouter as Router, 
+  Routes, 
+  Navigate,
+  Route,
+} from 'react-router-dom'
 
 function App() {
 
 
   return (
-    <>
-      <div>
-      <NavBar/>
-        <h1>Hola mundo</h1>
-        <ItemListContainer saludo="Hola mundo!"/>
-        <ItemCount/>
-        <Pika/>
+    <div className='App'>
+        <Router>
+          <NavBar />
+          <Routes>
+            <Route path='/' element={<ItemListContainer/>}/>
+            <Route path='/productos/:categoryId' element={<ItemListContainer/>}/>
+            <Route path='/detail/:itemId' element={<ItemDetailContainer/>}/>
+            <Route path='/counter' element={<ItemCount/>}/>
+            <Route path='/pika' element={<Pika/>}/>
+            <Route path='*' element={<Navigate to='/'/>} />
+          </Routes>
+        </Router>
       </div>
-    </>
   );
 }
 
