@@ -3,8 +3,10 @@ import {useNavigate} from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
 import { ItemCount } from '../ItemCount/ItemCount';
 import { CartContext } from '../context/CartContext';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-export const ItemDetail = ({ id, description, price, image, category, stock }) => {
+export const ItemDetail = ({ id, name, description, price, image, category, stock }) => {
   // Pasamos mediante props, cada propiedad de nuestro productos(objetos) y lo colocamos por props en nuestro return
   
   const navigate = useNavigate ()
@@ -15,6 +17,7 @@ export const ItemDetail = ({ id, description, price, image, category, stock }) =
   }
 
   //__________________________________________
+  
   const {addToCart} =useContext (CartContext)
   //__________________________________________
   
@@ -23,6 +26,7 @@ export const ItemDetail = ({ id, description, price, image, category, stock }) =
   const sumarAlCarrito = () =>{
     const newItem = {
       id,
+      name,
       description,
       price,
       image,
@@ -31,6 +35,12 @@ export const ItemDetail = ({ id, description, price, image, category, stock }) =
     }
     console.log(newItem)
   addToCart(newItem)
+  Swal.fire({
+    icon: 'success',
+    title: 'Producto agregado al carrito',
+    showConfirmButton: false,
+    timer: 1200
+    })
   }
   
   
@@ -39,9 +49,9 @@ export const ItemDetail = ({ id, description, price, image, category, stock }) =
       <Card style={{ width: '25rem' }}>
         <Card.Img variant="top" src={image} />
         <Card.Body>
-          <Card.Title>{id}</Card.Title>
+          <Card.Title>{name}</Card.Title>
           <Card.Title>{description}</Card.Title>
-          <Card.Title>{price}</Card.Title>
+          <Card.Title>${price}</Card.Title>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
             Ea error totam quibusdam doloribus, alias aperiam exercitationem 
             laboriosam illum similique eos, delectus vitae odit maxime, 
@@ -50,7 +60,10 @@ export const ItemDetail = ({ id, description, price, image, category, stock }) =
           <ItemCount max={stock} modify={setCounter} cantidad={counter} />
           <Button onClick={sumarAlCarrito}>Agregar al carrito</Button>
         </Card.Body>
-        <Button onClick={volverParaAtras} className='btnbtn-sucess'>Volver atrás</Button>
+        <Link to='/cart' className='btn btn-info'>
+          Ir al carrito
+        </Link>
+        <Button onClick={volverParaAtras} className='btn btn-sucess'>Volver atrás</Button>
       </Card>
     </div>
   )
