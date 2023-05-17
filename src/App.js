@@ -12,13 +12,13 @@ import {
   Navigate,
   Route,
 } from 'react-router-dom'
-import { CartContext } from './components/context/CartContext'
+import { CartProvider } from './components/context/CartContext'
 import { Checkout } from './components/Checkout/Checkout';
 
 function App() {
   return (
     
-      <CartContext.Provider >
+      <CartProvider >
         <div className='App'>
           <Router>
             <NavBar />
@@ -34,7 +34,7 @@ function App() {
             </Routes>
           </Router>
         </div>
-      </CartContext.Provider> 
+      </CartProvider> 
       
   );
 }
